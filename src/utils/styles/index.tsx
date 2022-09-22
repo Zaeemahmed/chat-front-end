@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { PageProps } from "./stylesTypes";
 
 export const DARK = "#131313";
 
@@ -51,9 +52,39 @@ export const Button = styled.button`
   }
 `;
 
-export const Page = styled.div`
+export const Page = styled.div<PageProps>`
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: ${(props) => props.display};
+  justify-content: ${(props) => props.justifyContent};
+  align-items: ${(props) => props.alignItems};
+`;
+
+export const ConversationsSidebarStyle = styled.aside`
+  background-color: #1a1a1a;
+  height: 100%;
+  width: 350px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  border-right: 1px solid #5454543b;
+
+  & header {
+    background-color: #151515;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 18px;
+  }
+`;
+
+export const ConversationsChannelStyle = styled.div`
+  height: 100%;
+  margin-left: 350px;
+`;
+
+export const ConversationPanelStyle = styled.div`
+  height: 100%;
+  margin-left: 350px;
 `;
