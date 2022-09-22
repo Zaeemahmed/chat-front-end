@@ -1,0 +1,32 @@
+form {
+  width: 800px;
+}
+
+.nameField {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.input {
+  width: 50%;
+}
+
+.button {
+  margin: 15px 0;
+}
+
+.password {
+  margin: 10px 0;
+}
+
+.existingUser, .nonexistingUser {
+  color: #fff;
+  margin: 8px 0;;
+  & :last-child {
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.699);
+  }
+}
