@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Button,
   InputContainer,
@@ -7,15 +7,23 @@ import {
 } from "../../utils/styles";
 import styles from "./index.module.scss";
 import { useForm } from "react-hook-form";
+import { userLoginParams } from "../../utils/types";
+import { postLoginAsync } from "../../utils/api";
 
 export const LoginForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const onSubmit = (data: any) => {
-    console.log(data);
+  } = useForm<userLoginParams>();
+  const navigate = useNavigate();
+  const onSubmit = async (data: userLoginParams) => {
+    try {
+      await postLoginAsync(data);
+      navigate("/conversation");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -25,7 +33,7 @@ export const LoginForm = () => {
         <InputField
           type="email"
           id="email"
-          {...register("email", { required: "Email is required" })}
+          {...register("username", { required: "Email is required" })}
         />
       </InputContainer>
       <InputContainer className={styles.password}>

@@ -68,7 +68,10 @@ export const ConversationsSidebarStyle = styled.aside`
   left: 0;
   color: #fff;
   border-right: 1px solid #5454543b;
-
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   & header {
     background-color: #151515;
     height: 100px;
@@ -87,4 +90,17 @@ export const ConversationsChannelStyle = styled.div`
 export const ConversationPanelStyle = styled.div`
   height: 100%;
   margin-left: 350px;
+`;
+
+export const SideBarConversationItemContainer = styled.div``;
+
+export const SideBarConversationItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  border-bottom: 1px solid #ffffff2b;
+  box-sizing: border-box;
+  padding: 18px 12px;
+  background-color: #131313;
+  cursor: pointer;
 `;

@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { postRegisterAsync } from "../../utils/api";
 import {
   Button,
   InputContainer,
   InputField,
   InputLabel,
 } from "../../utils/styles";
+import { createUserParams } from "../../utils/types";
 import styles from "./index.module.scss";
 
 export const RegisterForm = () => {
@@ -13,9 +15,13 @@ export const RegisterForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const onSubmit = (data: any) => {
-    console.log(data);
+  } = useForm<createUserParams>();
+  const onSubmit = async (data: createUserParams) => {
+    try {
+      await postRegisterAsync(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -34,7 +40,7 @@ export const RegisterForm = () => {
           <InputField
             type="text"
             id="firstname"
-            {...register("firstname", { required: "Firstname is required" })}
+            {...register("firstName", { required: "Firstname is required" })}
           />
         </InputContainer>
         <InputContainer className={styles.input}>
@@ -42,7 +48,7 @@ export const RegisterForm = () => {
           <InputField
             type="text"
             id="lastname"
-            {...register("lastname", { required: "Lastname is required" })}
+            {...register("lastName", { required: "Lastname is required" })}
           />
         </InputContainer>
       </section>
